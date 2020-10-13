@@ -12,7 +12,7 @@ def parse_args():
     parser = argparse.ArgumentParser(description='metrics arguments')
     parser.add_argument('--model_flag', type=str, default='refine',
                         help='model type: [refine | deeper | rpn]')
-    parser.add_argument('--output_path', type=str, default='/home/opt603/lst/code/SRN-Deblur/testing_res',
+    parser.add_argument('--output_path', type=str, default='/home/chenli/code/SRN-Deblur/testing_res',
                         help='output path for testing images')
     parser.add_argument('--exp_num', type=str, default='1')
     args = parser.parse_args()
@@ -20,7 +20,7 @@ def parse_args():
 
 args = parse_args()
 pred_imgs_path = os.path.join(args.output_path, args.model_flag + '_' + args.exp_num)
-imgs_list_file = '/home/opt603/lst/code/SRN-Deblur/test_datalist.txt'
+imgs_list_file = '/home/chenli/code/SRN-Deblur/test_datalist.txt'
 
 imgs_datalist = open(imgs_list_file, 'rt').read().splitlines()
 imgs_datalist = list(map(lambda x: x.split(' '), imgs_datalist))

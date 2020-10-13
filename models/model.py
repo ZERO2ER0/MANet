@@ -44,11 +44,11 @@ class DEBLUR(object):
 
     def input_producer(self, batch_size=10):
         def read_data():
-            img_a = tf.image.decode_image(tf.read_file(tf.string_join(['/home/opt603/data/GOPRO_Large/train/', self.data_queue[0]])),
+            img_a = tf.image.decode_image(tf.read_file(tf.string_join(['/home/chenli/data/GOPRO_Large/train/', self.data_queue[0]])),
                                           channels=3)
-            img_b = tf.image.decode_image(tf.read_file(tf.string_join(['/home/opt603/data/GOPRO_Large/train/', self.data_queue[1]])),
+            img_b = tf.image.decode_image(tf.read_file(tf.string_join(['/home/chenli/data/GOPRO_Large/train/', self.data_queue[1]])),
                                           channels=3)
-            img_c = tf.image.decode_image(tf.read_file(tf.string_join(['/home/opt603/data/GOPRO_Large/train/', self.data_queue[2]])),
+            img_c = tf.image.decode_image(tf.read_file(tf.string_join(['/home/chenli/data/GOPRO_Large/train/', self.data_queue[2]])),
                                           channels=3)
             img_a, img_b, img_c = preprocessing([img_a, img_b, img_c])
 
@@ -331,7 +331,7 @@ class DEBLUR(object):
         sess.run(tf.group(tf.global_variables_initializer(),
                           tf.local_variables_initializer()))
         # load vgg model
-        vgg_model_path = '/home/opt603/Downloads/vgg_16.ckpt'
+        vgg_model_path = '/home/chenli/Downloads/vgg_16.ckpt'
         exclude = ['vgg_16/fc6', 'vgg_16/pool4', 'vgg_16/conv5', 'vgg_16/pool5',
                    'vgg_16/fc7', 'vgg_16/global_pool', 'vgg_16/fc8/squeezed', 'vgg_16/fc8']
         vgg_vars = slim.get_variables_to_restore(
@@ -419,7 +419,7 @@ class DEBLUR(object):
         if not os.path.exists(output_path):
             os.makedirs(output_path)
         test_datalist = open(
-            '/home/opt603/data/real_dataset/list.txt', 'rt').read().splitlines()
+            '/home/cheni/data/real_dataset/list.txt', 'rt').read().splitlines()
         # test_datalist = list(map(lambda x: x.split(' '), test_datalist))
 
         # imgsName = [x[0] for x in test_datalist]
@@ -444,7 +444,7 @@ class DEBLUR(object):
             self.load(sess, self.train_dir, step=self.load_step)
             for imgName in imgsName:
                 blur = scipy.misc.imread(
-                    '/home/opt603/data/real_dataset/' + imgName + '.jpg')
+                    '/home/chenli/data/real_dataset/' + imgName + '.jpg')
                 split_name = imgName.split('/')
                 path_temp = os.path.join(
                     output_path, self.model_flag + '_' + self.exp_num, 'real')
