@@ -5,6 +5,6 @@
 - python=3.6
 - scipy
 
-## Traning 
+## Training 
 
 python run_model.py --phase=train --batch_size=16 --gpu=0
